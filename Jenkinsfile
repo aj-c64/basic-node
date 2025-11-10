@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     IMAGE_NAME = 'hello-node'
-    IMAGE_TAG  = "latest"
+    IMAGE_TAG  = 'latest'
     FULL_IMAGE = "${IMAGE_NAME}:${IMAGE_TAG}"
   }
 
@@ -16,19 +16,14 @@ pipeline {
     }
 
     stage('Docker Build') {
-      agent {
-        docker {
-          image 'docker:27-cli'
-          args '--network jenkins-net'
-          reuseNode true
-        }
-      }
+      agent { label 'node-agent' }
       environment {
         DOCKER_HOST = 'tcp://dind:2375'
       }
       steps {
         sh '''
           set -eux
+          which docker
           docker version
           docker build . -t ${FULL_IMAGE}
           docker images | head -n 5
