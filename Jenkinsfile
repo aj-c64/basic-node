@@ -9,14 +9,14 @@ pipeline {
 
   stages {
     stage('Checkout') {
-      agent { label 'any' }
+      agent any
       steps {
         checkout scm
       }
     }
 
     stage('Docker Build') {
-      agent { label 'any' }
+      agent any
       environment {
         DOCKER_HOST = 'tcp://dind:2375'
       }
