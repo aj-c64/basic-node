@@ -1,0 +1,11 @@
+{
+  "name": "hello-node",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hello World Node app for Docker/Jenkins demo",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "node app.js"
+  }
+}
+
